@@ -23,7 +23,7 @@ class MyApp extends ConsumerWidget {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
-            ref.read(helloWorldProvider.notifier).state = "state changed";
+            ref.read(helloWorldProvider.notifier).update((state) => " $state : addition");
           },
         ),
       ),
