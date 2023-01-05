@@ -10,6 +10,16 @@ class Screen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // why not create them inside screenVm, and use
+    // MyChangeNotifier variable;
+    //
+    // ChangeNotifierProvider.value(
+    //   value: variable,
+    //   child: ...
+    // )
+    // cause anyways they are screenVm's
+    // collaborators? this init will be gone.
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MyScaffoldValue>(create: (context) {

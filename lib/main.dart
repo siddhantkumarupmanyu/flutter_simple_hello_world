@@ -13,7 +13,7 @@ GoRouter router() {
     initialLocation: "/screen1",
     routes: [
       GoRoute(path: "/screen1", builder: (context, state) => Screen1()),
-      GoRoute(path: "/screen2", builder: (context, state) => const Screen2())
+      GoRoute(path: "/screen2", builder: (context, state) => Screen2())
     ],
   );
 }
