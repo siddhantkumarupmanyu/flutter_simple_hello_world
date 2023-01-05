@@ -12,11 +12,16 @@ class Screen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context){
+        ChangeNotifierProvider<MyScaffoldValue>(create: (context) {
           final sv = MyScaffoldValue();
           screenVm.setSv(sv);
           return sv;
-        })
+        }),
+        Provider<MyScaffoldCallback>(create: (context) {
+          final sc = MyScaffoldCallback();
+          sc.onPressed = screenVm.onPressed;
+          return sc;
+        }),
       ],
       child: const MyScaffold(),
     );
@@ -24,16 +29,17 @@ class Screen1 extends StatelessWidget {
 }
 
 class Screen1Vm {
-
   late final MyScaffoldValue sv;
 
-  setSv(MyScaffoldValue sv){
+  int count = 0;
+
+  setSv(MyScaffoldValue sv) {
     sv.setText("Test");
     this.sv = sv;
   }
 
-  @override
   void onPressed() {
-    print("sceenvm1 called");
+    count++;
+    sv.setText("screenVm1: $count");
   }
 }

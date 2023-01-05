@@ -7,18 +7,17 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final value = context.watch<MyScaffoldValue>();
-    // put listen: false here
-    // final callBack = Provider.of<MyScaffoldCallback>(context);
+    final callBack = Provider.of<MyScaffoldCallback>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
         child: Text(value.textValue),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: callBack.onPressed,
-      //   child: const Icon(Icons.add),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: callBack.onPressed,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
@@ -34,6 +33,10 @@ class MyScaffoldValue extends ChangeNotifier {
   }
 }
 
-// abstract class MyScaffoldCallback {
-//   void onPressed();
-// }
+class MyScaffoldCallback {
+  var onPressed = defaultCallback;
+
+  static void defaultCallback() {
+    print("default");
+  }
+}
