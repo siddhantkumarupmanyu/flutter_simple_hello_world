@@ -11,12 +11,11 @@ class Screen1 extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<String>(screen1Navigator, (String? oldState, String newState) {
       context.push(newState);
-      // why is new instance not getting created when i again come to this screen.
-      ref.read(myControllerProvider.notifier).dispose();
     });
 
-    _runsAfterBuild(ref);
+    // _runsAfterBuild(ref);
     ref.watch(myControllerProvider);
+
     return const MyScaffold();
   }
 
@@ -37,17 +36,19 @@ class Screen1Controller {
   final Ref ref;
   int count = 0;
 
-  Screen1Controller(this.ref);
+  Screen1Controller(this.ref){
+    onPressedValue = myAppControllerOnPressed;
+  }
 
   void initialize() {
-    ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
+    // ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
   }
 
   void myAppControllerOnPressed() {
     print("appAppController Override onPressed");
-    if (count > 10) {
-      ref.read(screen1Navigator.notifier).state = "/screen2";
-    }
+    // if (count > 10) {
+    //   ref.read(screen1Navigator.notifier).state = "/screen2";
+    // }
     ref.read(textProvider.notifier).state =
         "set from myAppController ${count++}";
   }

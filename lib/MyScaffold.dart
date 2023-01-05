@@ -7,7 +7,6 @@ class MyScaffold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textValue = ref.watch(textProvider);
-    final onPressedValue = ref.watch(onPressedProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello RiverPod")),
@@ -24,10 +23,8 @@ class MyScaffold extends ConsumerWidget {
 
 final textProvider = StateProvider((ref) => "Hello Riverpod from Provider");
 
-final onPressedProvider = StateProvider((ref) {
-  void defaultFn() {
-    print("onPressed default");
-  }
+void defaultFn() {
+  print("onPressed default");
+}
 
-  return defaultFn;
-});
+var onPressedValue = defaultFn;

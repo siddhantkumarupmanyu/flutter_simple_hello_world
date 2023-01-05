@@ -33,7 +33,7 @@ class Screen2Controller {
   Screen2Controller(this.ref);
 
   void initialize() {
-    ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
+    // ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
   }
 
   void myAppControllerOnPressed() {
