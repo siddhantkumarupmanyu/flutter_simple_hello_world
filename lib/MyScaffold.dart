@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyScaffold extends ConsumerWidget {
+class MyScaffold extends StatelessWidget {
   const MyScaffold({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final textValue = ref.watch(textProvider);
+  Widget build(BuildContext context) {
+    // final textValue = ref.watch(textProvider); todo:
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello RiverPod")),
       body: Center(
-        child: Text(textValue),
+        child: Text("test"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: onPressedValue,
+        onPressed: (){},
         child: const Icon(Icons.add),
       ),
     );
   }
 }
-
-final textProvider = StateProvider((ref) => "Hello Riverpod from Provider");
-
-void defaultFn() {
-  print("onPressed default");
-}
-
-var onPressedValue = defaultFn;

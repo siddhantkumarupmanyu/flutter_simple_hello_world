@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'Screen1.dart';
@@ -24,10 +23,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-        child: MaterialApp.router(
+    return MaterialApp.router(
       title: "Is this good???",
       routerConfig: router(),
-    ));
+    );
   }
 }
