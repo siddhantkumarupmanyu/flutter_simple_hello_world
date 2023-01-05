@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderScope(
         child: MaterialApp.router(
-      title: "Is this some good architecture???",
+      title: "Is this good???",
       routerConfig: router(),
     ));
   }
