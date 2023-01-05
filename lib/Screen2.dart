@@ -12,9 +12,7 @@ class Screen2 extends ConsumerWidget {
 
     ref.watch(myControllerProvider2);
 
-    return const MaterialApp(
-      home: MyScaffold(),
-    );
+    return const MyScaffold();
   }
 
   // https://stackoverflow.com/a/72286340

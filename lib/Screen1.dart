@@ -12,9 +12,7 @@ class Screen1 extends ConsumerWidget {
 
     ref.watch(myControllerProvider);
 
-    return const MaterialApp(
-      home: MyScaffold(),
-    );
+    return const MyScaffold();
   }
 
   // https://stackoverflow.com/a/72286340
@@ -26,7 +24,7 @@ class Screen1 extends ConsumerWidget {
 }
 
 final myControllerProvider =
-Provider.autoDispose((ref) => Screen1Controller(ref));
+    Provider.autoDispose((ref) => Screen1Controller(ref));
 
 class Screen1Controller {
   final ProviderRef<Screen1Controller> ref;
@@ -41,6 +39,6 @@ class Screen1Controller {
   void myAppControllerOnPressed() {
     print("appAppController Override onPressed");
     ref.read(textProvider.notifier).state =
-    "set from myAppController ${count++}";
+        "set from myAppController ${count++}";
   }
 }
