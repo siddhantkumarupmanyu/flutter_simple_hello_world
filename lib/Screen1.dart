@@ -9,14 +9,14 @@ class Screen1 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    _runsAfterBuild(ref);
-
-    ref.watch(myControllerProvider);
-
     ref.listen<String>(screen1Navigator, (String? oldState, String newState) {
       context.push(newState);
+      // why is new instance not getting created when i again come to this screen.
+      ref.read(myControllerProvider.notifier).dispose();
     });
 
+    _runsAfterBuild(ref);
+    ref.watch(myControllerProvider);
     return const MyScaffold();
   }
 
@@ -24,15 +24,17 @@ class Screen1 extends ConsumerWidget {
   Future<void> _runsAfterBuild(WidgetRef ref) async {
     await Future(() {}); // <-- Dummy await
     print("build complete");
-    ref.read(myControllerProvider).initialize();
+    if (GoRouter.of(ref.context).location == "/screen1") {
+      ref.read(myControllerProvider).initialize();
+    }
   }
 }
 
 final myControllerProvider =
-    Provider.autoDispose((ref) => Screen1Controller(ref));
+    StateProvider.autoDispose((ref) => Screen1Controller(ref));
 
 class Screen1Controller {
-  final ProviderRef<Screen1Controller> ref;
+  final Ref ref;
   int count = 0;
 
   Screen1Controller(this.ref);
@@ -52,4 +54,4 @@ class Screen1Controller {
 }
 
 // can we have single navigator for both screen, like global navigator???
-final screen1Navigator = StateProvider((ref) => "/nothing");
+final screen1Navigator = StateProvider((ref) => "/screen1");

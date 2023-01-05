@@ -18,7 +18,7 @@ class Screen2 extends ConsumerWidget {
   // https://stackoverflow.com/a/72286340
   Future<void> _runsAfterBuild(WidgetRef ref) async {
     await Future(() {}); // <-- Dummy await
-    print("build complete");
+    print("build complete for 2");
     ref.read(myControllerProvider2).initialize();
   }
 }
