@@ -8,7 +8,7 @@ class MyScaffold extends StatelessWidget {
     // final textValue = ref.watch(textProvider); todo:
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Hello RiverPod")),
+      appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
         child: Text("test"),
       ),
