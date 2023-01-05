@@ -21,6 +21,7 @@ class MyApp extends ConsumerWidget {
     );
   }
 
+  // https://stackoverflow.com/a/72286340
   Future<void> _runsAfterBuild(WidgetRef ref) async {
     await Future(() {}); // <-- Dummy await
     print("build complete");
