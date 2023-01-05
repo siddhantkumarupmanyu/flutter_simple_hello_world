@@ -12,11 +12,19 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    _runsAfterBuild(ref);
+
     ref.watch(myControllerProvider);
 
     return const MaterialApp(
       home: MyScaffold(),
     );
+  }
+
+  Future<void> _runsAfterBuild(WidgetRef ref) async {
+    await Future((){}); // <-- Dummy await
+    print("build complete");
+    ref.read(myControllerProvider).initialize();
   }
 }
 
@@ -27,9 +35,11 @@ class MyAppController {
 
   MyAppController(this.ref);
 
-  // ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
+  void initialize(){
+    ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
+  }
 
-  void myAppControllerOnPressed(){
+  void myAppControllerOnPressed() {
     print("appAppController Override onPressed");
   }
 }
