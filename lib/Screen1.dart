@@ -13,19 +13,9 @@ class Screen1 extends ConsumerWidget {
       context.push(newState);
     });
 
-    // _runsAfterBuild(ref);
     ref.watch(myControllerProvider);
 
     return const MyScaffold();
-  }
-
-  // https://stackoverflow.com/a/72286340
-  Future<void> _runsAfterBuild(WidgetRef ref) async {
-    await Future(() {}); // <-- Dummy await
-    print("build complete");
-    if (GoRouter.of(ref.context).location == "/screen1") {
-      ref.read(myControllerProvider).initialize();
-    }
   }
 }
 
@@ -40,15 +30,11 @@ class Screen1Controller {
     onPressedValue = myAppControllerOnPressed;
   }
 
-  void initialize() {
-    // ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
-  }
-
   void myAppControllerOnPressed() {
     print("appAppController Override onPressed");
-    // if (count > 10) {
-    //   ref.read(screen1Navigator.notifier).state = "/screen2";
-    // }
+    if (count > 10) {
+      ref.read(screen1Navigator.notifier).state = "/screen2";
+    }
     ref.read(textProvider.notifier).state =
         "set from myAppController ${count++}";
   }
