@@ -22,24 +22,28 @@ class MyApp extends ConsumerWidget {
   }
 
   Future<void> _runsAfterBuild(WidgetRef ref) async {
-    await Future((){}); // <-- Dummy await
+    await Future(() {}); // <-- Dummy await
     print("build complete");
     ref.read(myControllerProvider).initialize();
   }
 }
 
-final myControllerProvider = Provider((ref) => MyAppController(ref));
+final myControllerProvider =
+    Provider.autoDispose((ref) => MyAppController(ref));
 
 class MyAppController {
   final ProviderRef<MyAppController> ref;
+  int count = 0;
 
   MyAppController(this.ref);
 
-  void initialize(){
+  void initialize() {
     ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
   }
 
   void myAppControllerOnPressed() {
     print("appAppController Override onPressed");
+    ref.read(textProvider.notifier).state =
+        "setting from myAppController ${count++}";
   }
 }
