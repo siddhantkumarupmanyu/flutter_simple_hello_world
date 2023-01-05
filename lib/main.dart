@@ -13,24 +13,33 @@ void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: MyScaffold(),
+    );
+  }
+}
+
+class MyScaffold extends ConsumerWidget {
+  const MyScaffold({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textValue = ref.watch(textProvider);
     final onPressedValue = ref.watch(onPressedProvider);
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Hello RiverPod")),
-        body: Center(
-          child: Text(textValue),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: onPressedValue,
-          child: const Icon(Icons.add),
-        ),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Hello RiverPod")),
+      body: Center(
+        child: Text(textValue),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: onPressedValue,
+        child: const Icon(Icons.add),
       ),
     );
   }
