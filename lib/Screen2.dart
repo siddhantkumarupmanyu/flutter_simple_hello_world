@@ -33,9 +33,9 @@ class Screen2Controller {
 
   void myAppControllerOnPressed() {
     print("appAppController2 Override onPressed");
-    if (count > 10) {
-      ref.read(screen1Navigator.notifier).state = "/screen2";
-    }
+    // if (count > 10) {
+    //   ref.read(screen1Navigator.notifier).state = "/screen2";
+    // }
     ref.read(textProvider.notifier).state =
         "set from myAppController2 ${count++}";
   }

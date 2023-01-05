@@ -10,6 +10,7 @@ class Screen1 extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<String>(screen1Navigator, (String? oldState, String newState) {
+      ref.invalidate(myControllerProvider);
       context.push(newState);
     });
 
@@ -20,7 +21,7 @@ class Screen1 extends ConsumerWidget {
 }
 
 final myControllerProvider =
-    StateProvider.autoDispose((ref) => Screen1Controller(ref));
+    StateProvider((ref) => Screen1Controller(ref));
 
 class Screen1Controller {
   final Ref ref;
