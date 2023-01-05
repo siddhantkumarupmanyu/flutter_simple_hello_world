@@ -25,7 +25,9 @@ class MyScaffold extends ConsumerWidget {
 final textProvider = StateProvider((ref) => "Hello Riverpod from Provider");
 
 final onPressedProvider = StateProvider((ref) {
-  return () {
+  void defaultFn() {
     print("onPressed default");
-  };
+  }
+
+  return defaultFn;
 });
