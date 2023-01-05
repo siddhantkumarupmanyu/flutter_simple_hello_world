@@ -10,28 +10,10 @@ class Screen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // why not create them inside screenVm, and use
-    // MyChangeNotifier variable;
-    //
-    // ChangeNotifierProvider.value(
-    //   value: variable,
-    //   child: ...
-    // )
-    // cause anyways they are screenVm's
-    // collaborators? this init will be gone.
-
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<MyScaffoldValue>(create: (context) {
-          final sv = MyScaffoldValue();
-          screenVm.initSv(sv);
-          return sv;
-        }),
-        Provider<MyScaffoldCallback>(create: (context) {
-          final sc = MyScaffoldCallback();
-          screenVm.initSc(sc);
-          return sc;
-        }),
+        ChangeNotifierProvider<MyScaffoldValue>.value(value: screenVm.sv),
+        Provider<MyScaffoldCallback>.value(value: screenVm.sc),
       ],
       child: const MyScaffold(),
     );
@@ -40,20 +22,19 @@ class Screen1 extends StatelessWidget {
 
 class Screen1Vm {
   late final MyScaffoldValue sv;
+  late final MyScaffoldCallback sc;
 
   int count = 0;
+
+  Screen1Vm() {
+    this.sc = MyScaffoldCallback();
+    this.sv = MyScaffoldValue();
+    this.sv.setText("Test");
+    this.sc.onPressed = onPressed;
+  }
 
   void onPressed() {
     count++;
     sv.setText("screenVm1: $count");
-  }
-
-  void initSc(MyScaffoldCallback sc) {
-    sc.onPressed = onPressed;
-  }
-
-  initSv(MyScaffoldValue sv) {
-    sv.setText("Test");
-    this.sv = sv;
   }
 }
