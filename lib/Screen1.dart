@@ -4,27 +4,33 @@ import 'package:provider/provider.dart';
 import 'MyScaffold.dart';
 
 class Screen1 extends StatelessWidget {
-  const Screen1({super.key});
+  final Screen1Vm screenVm = Screen1Vm();
+
+  Screen1({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<Screen1Vm>(create: (context) => Screen1Vm()),
-        ChangeNotifierProxyProvider<Screen1Vm, MyScaffoldValue>(
-            create: (context) => MyScaffoldValue(),
-            update: (_, screen1Vm, sV) => screen1Vm),
-        // ProxyProvider<Screen1Vm, MyScaffoldCallback>(
-        //     update: (_, screen1Vm, sC) => screen1Vm),
+        ChangeNotifierProvider(create: (context){
+          final sv = MyScaffoldValue();
+          screenVm.setSv(sv);
+          return sv;
+        })
       ],
       child: const MyScaffold(),
     );
   }
 }
 
-class Screen1Vm extends ChangeNotifier implements MyScaffoldValue {
-  @override
-  String get value => "from Screen1Vm";
+class Screen1Vm {
+
+  late final MyScaffoldValue sv;
+
+  setSv(MyScaffoldValue sv){
+    sv.setText("Test");
+    this.sv = sv;
+  }
 
   @override
   void onPressed() {

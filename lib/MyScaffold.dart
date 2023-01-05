@@ -13,7 +13,7 @@ class MyScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
-        child: Text(value.value),
+        child: Text(value.textValue),
       ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: callBack.onPressed,
@@ -23,9 +23,14 @@ class MyScaffold extends StatelessWidget {
   }
 }
 
-class MyScaffoldValue extends ChangeNotifier { // add withChangeNotifier
-  String get value {
-    throw UnimplementedError();
+class MyScaffoldValue extends ChangeNotifier {
+  String _textValue = "";
+
+  String get textValue => _textValue;
+
+  void setText(String value) {
+    _textValue = value;
+    notifyListeners();
   }
 }
 
