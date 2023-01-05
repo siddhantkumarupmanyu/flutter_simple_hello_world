@@ -14,12 +14,12 @@ class Screen1 extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<MyScaffoldValue>(create: (context) {
           final sv = MyScaffoldValue();
-          screenVm.setSv(sv);
+          screenVm.initSv(sv);
           return sv;
         }),
         Provider<MyScaffoldCallback>(create: (context) {
           final sc = MyScaffoldCallback();
-          sc.onPressed = screenVm.onPressed;
+          screenVm.initSc(sc);
           return sc;
         }),
       ],
@@ -33,13 +33,17 @@ class Screen1Vm {
 
   int count = 0;
 
-  setSv(MyScaffoldValue sv) {
-    sv.setText("Test");
-    this.sv = sv;
-  }
-
   void onPressed() {
     count++;
     sv.setText("screenVm1: $count");
+  }
+
+  void initSc(MyScaffoldCallback sc) {
+    sc.onPressed = onPressed;
+  }
+
+  initSv(MyScaffoldValue sv) {
+    sv.setText("Test");
+    this.sv = sv;
   }
 }
