@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final helloWorldProvider = Provider((ref) => "Hello Riverpod from Provider");
+final helloWorldProvider = StateProvider((ref) => "Hello Riverpod from Provider");
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -16,9 +16,15 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Hello RiverPod")),
+        appBar: AppBar(title: const Text("Hello RiverPod")),
         body: Center(
           child: Text(value),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            ref.read(helloWorldProvider.notifier).state = "state changed";
+          },
         ),
       ),
     );
