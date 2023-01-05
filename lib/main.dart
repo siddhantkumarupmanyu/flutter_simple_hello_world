@@ -4,11 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'MyScaffold.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: Screen1()));
 }
 
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+class Screen1 extends ConsumerWidget {
+  const Screen1({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,13 +30,13 @@ class MyApp extends ConsumerWidget {
 }
 
 final myControllerProvider =
-    Provider.autoDispose((ref) => MyAppController(ref));
+    Provider.autoDispose((ref) => Screen1Controller(ref));
 
-class MyAppController {
-  final ProviderRef<MyAppController> ref;
+class Screen1Controller {
+  final ProviderRef<Screen1Controller> ref;
   int count = 0;
 
-  MyAppController(this.ref);
+  Screen1Controller(this.ref);
 
   void initialize() {
     ref.read(onPressedProvider.notifier).state = myAppControllerOnPressed;
@@ -45,6 +45,6 @@ class MyAppController {
   void myAppControllerOnPressed() {
     print("appAppController Override onPressed");
     ref.read(textProvider.notifier).state =
-        "setting from myAppController ${count++}";
+        "set from myAppController ${count++}";
   }
 }
