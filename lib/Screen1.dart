@@ -11,7 +11,7 @@ class Screen1 extends StatelessWidget {
 
   late BuildContext _buildContext;
 
-  Screen1({super.key}){
+  Screen1({super.key}) {
     this._screenVm = Screen1Vm(this._navigateTo);
   }
 
@@ -39,17 +39,19 @@ class Screen1 extends StatelessWidget {
 class Screen1Vm {
   final void Function() _navigateTo;
 
-  final StreamController<MyScaffoldValue> _myScaffoldValueStreamController = StreamController();
+  final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
+      StreamController();
 
-  Stream<MyScaffoldValue> get myScaffoldValueStream => _myScaffoldValueStreamController.stream;
+  Stream<MyScaffoldValue> get myScaffoldValueStream =>
+      _myScaffoldValueStreamController.stream;
 
   int _count = 0;
 
   Screen1Vm(this._navigateTo);
 
   void onPressed() {
-    // _count++;
-    // sv.setText("screenVm1: $count");
+    _count++;
+    _myScaffoldValueStreamController.add(MyScaffoldValue(_count.toString()));
     // if (count > 10) {
     //   navigateTo();
     // }
