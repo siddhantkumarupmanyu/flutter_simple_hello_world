@@ -18,15 +18,17 @@ class Screen1 extends StatelessWidget {
     buildContext = context;
     return MultiProvider(
       providers: [
-        StreamProvider<String>.value(
-          value: screenVm.testSteam,
-          initialData: '10',
-        ),
         StreamProvider<MyScaffoldValue>.value(
           value: screenVm.testSteam,
-          initialData: '100',
+          initialData: const MyScaffoldValue("100"),
         ),
-        Provider<MyScaffoldOnPressed>.value(value: screenVm.onPressed),
+        StreamProvider<String>.value(
+          value: screenVm.stringSteam,
+          initialData: '10',
+        ),
+        Provider<MyScaffoldOnPressed>.value(
+            // should i put it inside my vm
+            value: MyScaffoldOnPressed(screenVm.onPressed)),
       ],
       child: const MyScaffold(),
     );
@@ -46,6 +48,16 @@ class Screen1Vm {
       await Future.delayed(const Duration(seconds: 2), () {
         i++;
       });
+      yield MyScaffoldValue(i.toString());
+    }
+  }
+
+  Stream<String> get stringSteam async* {
+    var i = 0;
+    while (i < 85) {
+      await Future.delayed(const Duration(seconds: 2), () {
+        i++;
+      });
       yield i.toString();
     }
   }
@@ -53,6 +65,10 @@ class Screen1Vm {
   int _count = 0;
 
   Screen1Vm();
+
+  // MyScaffoldOnPressed scaffoldCallback = MyScaffoldOnPressed((){
+  //   print("test");
+  // });
 
   void onPressed() {
     // todo:

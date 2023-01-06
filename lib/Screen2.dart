@@ -13,7 +13,7 @@ class Screen2 extends StatelessWidget {
     return MultiProvider(
       providers: [
         // ChangeNotifierProvider<MyScaffoldValue>.value(value: screenVm.sv),
-        Provider<MyScaffoldOnPressed>.value(value: screenVm.onPressed),
+        // Provider<MyScaffoldOnPressed>.value(value: screenVm.onPressed),
       ],
       child: const MyScaffold(),
     );
