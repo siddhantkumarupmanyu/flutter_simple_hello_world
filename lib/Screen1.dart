@@ -22,12 +22,7 @@ class Screen1 extends StatelessWidget {
           value: screenVm.testSteam,
           initialData: const MyScaffoldValue("100"),
         ),
-        StreamProvider<String>.value(
-          value: screenVm.stringSteam,
-          initialData: '10',
-        ),
         Provider<MyScaffoldOnPressed>.value(
-            // should i put it inside my vm
             value: MyScaffoldOnPressed(screenVm.onPressed)),
       ],
       child: const MyScaffold(),
@@ -66,14 +61,9 @@ class Screen1Vm {
 
   Screen1Vm();
 
-  MyScaffoldOnPressed scaffoldCallback = MyScaffoldOnPressed((){
-    _count = 12;
-    print("test");
-  });
-
   void onPressed() {
     // todo:
-    _count++;
+    // _count++;
     // sv.setText("screenVm1: $count");
     // if (count > 10) {
     //   navigateTo();
