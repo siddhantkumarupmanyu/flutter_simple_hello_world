@@ -18,9 +18,13 @@ class Screen1 extends StatelessWidget {
     buildContext = context;
     return MultiProvider(
       providers: [
+        StreamProvider<String>.value(
+          value: screenVm.testSteam,
+          initialData: '10',
+        ),
         StreamProvider<MyScaffoldValue>.value(
           value: screenVm.testSteam,
-          initialData: '0',
+          initialData: '100',
         ),
         Provider<MyScaffoldOnPressed>.value(value: screenVm.onPressed),
       ],
