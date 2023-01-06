@@ -51,9 +51,10 @@ class Screen1Vm {
 
   void onPressed() {
     _count++;
-    _myScaffoldValueStreamController.add(MyScaffoldValue(_count.toString()));
-    // if (count > 10) {
-    //   navigateTo();
-    // }
+    _myScaffoldValueStreamController
+        .add(MyScaffoldValue("$_count from screen 1"));
+    if (_count > 10) {
+      _navigateTo();
+    }
   }
 }
