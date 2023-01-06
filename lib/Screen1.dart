@@ -5,12 +5,12 @@ import 'package:provider/provider.dart';
 import 'MyScaffold.dart';
 
 class Screen1 extends StatelessWidget {
-  final Screen1Vm screenVm = Screen1Vm();
+  late final Screen1Vm screenVm;
 
   late BuildContext buildContext;
 
-  Screen1({super.key}) {
-    this.screenVm.navigateTo = _navigateTo;
+  Screen1({super.key}){
+    this.screenVm = Screen1Vm(this._navigateTo);
   }
 
   @override
@@ -35,7 +35,7 @@ class Screen1 extends StatelessWidget {
 }
 
 class Screen1Vm {
-  late final void Function() navigateTo;
+  final void Function() navigateTo;
 
   Stream<MyScaffoldValue> get testSteam async* {
     var i = 0;
@@ -59,7 +59,7 @@ class Screen1Vm {
 
   int _count = 0;
 
-  Screen1Vm();
+  Screen1Vm(this.navigateTo);
 
   void onPressed() {
     // todo:
