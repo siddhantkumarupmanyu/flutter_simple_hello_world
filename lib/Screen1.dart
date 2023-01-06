@@ -40,7 +40,7 @@ class Screen1Vm {
   final void Function() _navigateTo;
 
   final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
-      StreamController();
+      StreamController()..add(MyScaffoldValue("initial value"));
 
   Stream<MyScaffoldValue> get myScaffoldValueStream =>
       _myScaffoldValueStreamController.stream;

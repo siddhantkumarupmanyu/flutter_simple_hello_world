@@ -28,7 +28,7 @@ class Screen2 extends StatelessWidget {
 
 class Screen2Vm {
   final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
-      StreamController();
+      StreamController()..add(MyScaffoldValue("initial value, screen 2"));
 
   Stream<MyScaffoldValue> get myScaffoldValueStream =>
       _myScaffoldValueStreamController.stream;
