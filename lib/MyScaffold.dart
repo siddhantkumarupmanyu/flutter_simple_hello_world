@@ -23,6 +23,5 @@ class MyScaffold extends StatelessWidget {
   }
 }
 
-// typedef won't work as it creates just an alias and not new type
 typedef MyScaffoldValue = String;
 typedef MyScaffoldOnPressed = void Function();
