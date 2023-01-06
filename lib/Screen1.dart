@@ -47,16 +47,6 @@ class Screen1Vm {
     }
   }
 
-  Stream<String> get stringSteam async* {
-    var i = 0;
-    while (i < 85) {
-      await Future.delayed(const Duration(seconds: 2), () {
-        i++;
-      });
-      yield i.toString();
-    }
-  }
-
   int _count = 0;
 
   Screen1Vm(this.navigateTo);
