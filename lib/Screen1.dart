@@ -66,13 +66,14 @@ class Screen1Vm {
 
   Screen1Vm();
 
-  // MyScaffoldOnPressed scaffoldCallback = MyScaffoldOnPressed((){
-  //   print("test");
-  // });
+  MyScaffoldOnPressed scaffoldCallback = MyScaffoldOnPressed((){
+    _count = 12;
+    print("test");
+  });
 
   void onPressed() {
     // todo:
-    // count++;
+    _count++;
     // sv.setText("screenVm1: $count");
     // if (count > 10) {
     //   navigateTo();
