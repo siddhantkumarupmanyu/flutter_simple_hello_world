@@ -11,7 +11,7 @@ class CountRepository{
   }
 
   Future<void> saveCount(int count) async{
-    // add some delay
+    await Future.delayed(const Duration(seconds: 2));
     _count = count;
   }
 
