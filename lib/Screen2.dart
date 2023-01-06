@@ -13,7 +13,7 @@ class Screen2 extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MyScaffoldValue>.value(value: screenVm.sv),
-        Provider<MyScaffoldCallback>.value(value: screenVm.sc),
+        Provider<MyScaffoldOnPressed>.value(value: screenVm.onPressed),
       ],
       child: const MyScaffold(),
     );
@@ -22,15 +22,12 @@ class Screen2 extends StatelessWidget {
 
 class Screen2Vm {
   late final MyScaffoldValue sv;
-  late final MyScaffoldCallback sc;
 
   int count = 0;
 
   Screen2Vm() {
-    this.sc = MyScaffoldCallback();
     this.sv = MyScaffoldValue();
     this.sv.setText("Test");
-    this.sc.onPressed = onPressed;
   }
 
   void onPressed() {
