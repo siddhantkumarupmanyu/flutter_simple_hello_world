@@ -18,7 +18,10 @@ class Screen1 extends StatelessWidget {
     buildContext = context;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<MyScaffoldValue>.value(value: screenVm.sv),
+        StreamProvider<MyScaffoldValue>.value(
+          value: screenVm.testSteam,
+          initialData: '0',
+        ),
         Provider<MyScaffoldOnPressed>.value(value: screenVm.onPressed),
       ],
       child: const MyScaffold(),
@@ -31,22 +34,28 @@ class Screen1 extends StatelessWidget {
 }
 
 class Screen1Vm {
-  late final MyScaffoldValue sv;
-
   late final void Function() navigateTo;
 
-  int count = 0;
-
-  Screen1Vm() {
-    this.sv = MyScaffoldValue();
-    this.sv.setText("Test");
+  Stream<MyScaffoldValue> get testSteam async* {
+    var i = 0;
+    while (i < 85) {
+      await Future.delayed(const Duration(seconds: 2), () {
+        i++;
+      });
+      yield i.toString();
+    }
   }
 
+  int _count = 0;
+
+  Screen1Vm();
+
   void onPressed() {
-    count++;
-    sv.setText("screenVm1: $count");
-    if (count > 10) {
-      navigateTo();
-    }
+    // todo:
+    // count++;
+    // sv.setText("screenVm1: $count");
+    // if (count > 10) {
+    //   navigateTo();
+    // }
   }
 }

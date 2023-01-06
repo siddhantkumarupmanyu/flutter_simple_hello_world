@@ -7,12 +7,13 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final value = context.watch<MyScaffoldValue>();
-    final myScaffoldOnPressed = Provider.of<MyScaffoldOnPressed>(context, listen: false);
+    final myScaffoldOnPressed =
+        Provider.of<MyScaffoldOnPressed>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
-        child: Text(value.textValue),
+        child: Text(value),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: myScaffoldOnPressed,
@@ -22,16 +23,6 @@ class MyScaffold extends StatelessWidget {
   }
 }
 
-// can use a stream instead of changeNotifier
-class MyScaffoldValue extends ChangeNotifier {
-  String _textValue = "";
-
-  String get textValue => _textValue;
-
-  void setText(String value) {
-    _textValue = value;
-    notifyListeners();
-  }
-}
-
+// typedef won't work as it creates just an alias and not new type
+typedef MyScaffoldValue = String;
 typedef MyScaffoldOnPressed = void Function();
