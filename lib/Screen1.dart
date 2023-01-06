@@ -7,14 +7,15 @@ import 'MyScaffold.dart';
 class Screen1 extends StatelessWidget {
   final Screen1Vm screenVm = Screen1Vm();
 
-  final BuildContext goRouterContext;
+  late BuildContext buildContext;
 
-  Screen1(this.goRouterContext, {super.key}) {
+  Screen1({super.key}) {
     this.screenVm.navigateTo = _navigateTo;
   }
 
   @override
   Widget build(BuildContext context) {
+    buildContext = context;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MyScaffoldValue>.value(value: screenVm.sv),
@@ -25,7 +26,7 @@ class Screen1 extends StatelessWidget {
   }
 
   void _navigateTo() {
-    goRouterContext.push("/screen2");
+    buildContext.push("/screen2");
   }
 }
 

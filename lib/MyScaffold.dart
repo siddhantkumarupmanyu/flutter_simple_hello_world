@@ -22,6 +22,7 @@ class MyScaffold extends StatelessWidget {
   }
 }
 
+// can use a stream instead of changeNotifier
 class MyScaffoldValue extends ChangeNotifier {
   String _textValue = "";
 
