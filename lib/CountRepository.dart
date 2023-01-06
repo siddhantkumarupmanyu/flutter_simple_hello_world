@@ -7,21 +7,21 @@ class CountRepository {
 
   Stream<int> get countSteam => _countStreamController.stream;
 
-  final int _saveDuration;
+  final int _operationDuration;
 
-  CountRepository(this._saveDuration) {
+  CountRepository(this._operationDuration) {
     _countStreamController.onListen = (){
       _countStreamController.add(_count);
     };
   }
 
-  // todo: make this return future
-  int getCount() {
+  Future<int> getCount() async {
+    await Future.delayed(Duration(milliseconds: _operationDuration));
     return _count;
   }
 
   Future<void> saveCount(int count) async {
-    // await Future.delayed(Duration(milliseconds: _saveDuration));
+    await Future.delayed(Duration(milliseconds: _operationDuration));
     _count = count;
     if (_countStreamController.hasListener) {
       _countStreamController.add(_count);
