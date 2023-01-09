@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
+import 'Screen1Vm.dart';
+
 class Screen1 extends StatelessWidget {
   late final Screen1Vm _screenVm;
 
@@ -32,28 +34,5 @@ class Screen1 extends StatelessWidget {
 
   void _navigateTo() {
     _buildContext.push("/screen2");
-  }
-}
-
-class Screen1Vm {
-  final void Function() _navigateTo;
-
-  final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
-      StreamController()..add(MyScaffoldValue("initial value"));
-
-  Stream<MyScaffoldValue> get myScaffoldValueStream =>
-      _myScaffoldValueStreamController.stream;
-
-  int _count = 0;
-
-  Screen1Vm(this._navigateTo);
-
-  void onPressed() {
-    _count++;
-    _myScaffoldValueStreamController
-        .add(MyScaffoldValue("$_count from screen 1"));
-    if (_count > 10) {
-      _navigateTo();
-    }
   }
 }
