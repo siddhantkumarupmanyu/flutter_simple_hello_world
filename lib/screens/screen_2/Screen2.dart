@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
-import '../widgets/MyScaffold.dart';
 
 
 class Screen2 extends StatelessWidget {

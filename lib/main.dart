@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'screens/Screen1.dart';
-import 'screens/Screen2.dart';
+import 'screens/screen_1/Screen1.dart';
+import 'screens/screen_2/Screen2.dart';
 
 // next step
 // - add a repo or some global stuff in main() and let it be consumed in GoRoute builder,

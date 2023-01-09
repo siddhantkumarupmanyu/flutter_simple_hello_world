@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/MyScaffold.dart';
+import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
 class Screen1 extends StatelessWidget {
   late final Screen1Vm _screenVm;
