@@ -1,10 +1,10 @@
 import 'package:async/async.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:simple_hello_world/CountRepository.dart';
+import 'package:simple_hello_world/InMemoryCountRepository.dart';
 
 void main() {
   test("savesCount", () async {
-    final repo = CountRepository(20);
+    final repo = InMemoryCountRepository(20);
 
     await repo.saveCount(10);
 
@@ -12,7 +12,7 @@ void main() {
   });
 
   test("emitsCount", () async {
-    final repo = CountRepository(20);
+    final repo = InMemoryCountRepository(20);
     final streamQueue = StreamQueue<int>(repo.countSteam);
 
     // i need to await so that saveCount finishes the operation without putting anything in the steam,

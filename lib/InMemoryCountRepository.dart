@@ -1,6 +1,6 @@
 import 'dart:async';
 
-class CountRepository {
+class InMemoryCountRepository {
   int _count = 0;
 
   final StreamController<int> _countStreamController = StreamController();
@@ -9,7 +9,7 @@ class CountRepository {
 
   final int _operationDuration;
 
-  CountRepository(this._operationDuration) {
+  InMemoryCountRepository(this._operationDuration) {
     _notifyFirstListenerWhenAttachedToCountStream();
   }
 
