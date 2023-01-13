@@ -10,19 +10,31 @@ class CountRepository {
   final int _operationDuration;
 
   CountRepository(this._operationDuration) {
+    _notifyFirstListenerWhenAttachedToCountStream();
+  }
+
+  Future<int> getCount() async {
+    await _waitForSomeTime();
+    return _count;
+  }
+
+  Future<void> saveCount(int count) async {
+    await _waitForSomeTime();
+    _count = count;
+    _notifyStream();
+  }
+
+  void _notifyFirstListenerWhenAttachedToCountStream() {
     _countStreamController.onListen = (){
       _countStreamController.add(_count);
     };
   }
 
-  Future<int> getCount() async {
+  Future<void> _waitForSomeTime() async {
     await Future.delayed(Duration(milliseconds: _operationDuration));
-    return _count;
   }
 
-  Future<void> saveCount(int count) async {
-    await Future.delayed(Duration(milliseconds: _operationDuration));
-    _count = count;
+  void _notifyStream() {
     if (_countStreamController.hasListener) {
       _countStreamController.add(_count);
     }
