@@ -1,10 +1,13 @@
 import 'dart:async';
 
-class InMemoryCountRepository {
+import 'package:simple_hello_world/CountRepository.dart';
+
+class InMemoryCountRepository implements CountRepository {
   int _count = 0;
 
   final StreamController<int> _countStreamController = StreamController();
 
+  @override
   Stream<int> get countSteam => _countStreamController.stream;
 
   final int _operationDuration;
@@ -13,11 +16,13 @@ class InMemoryCountRepository {
     _notifyFirstListenerWhenAttachedToCountStream();
   }
 
+  @override
   Future<int> getCount() async {
     await _waitForSomeTime();
     return _count;
   }
 
+  @override
   Future<void> saveCount(int count) async {
     await _waitForSomeTime();
     _count = count;
