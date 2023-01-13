@@ -12,21 +12,14 @@ class Screen1Vm {
   final void Function() _navigateTo;
 
   final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
-      StreamController()..add(const MyScaffoldValue("initial value"));
+      StreamController();
+        // ..add(const MyScaffoldValue("initial value"));
 
   Stream<MyScaffoldValue> get myScaffoldValueStream =>
       _myScaffoldValueStreamController.stream;
 
-  int _count = 0;
-
   Screen1Vm(this._navigateTo);
 
   void onPressed() {
-    _count++;
-    _myScaffoldValueStreamController
-        .add(MyScaffoldValue("$_count from screen 1"));
-    if (_count > 10) {
-      _navigateTo();
-    }
   }
 }
