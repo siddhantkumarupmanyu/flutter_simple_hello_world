@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:simple_hello_world/CountRepository.dart';
 import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
 // Vm stands for view model
@@ -25,5 +26,17 @@ class Screen1VmOld {
 }
 
 class Screen1Vm {
+
+  final CountRepository _countRepo;
+
+  Screen1Vm(this._countRepo);
+
+
+  void onPressed() {
+    final count = _countRepo.getCount();
+    count.then((value) {
+      _countRepo.saveCount(value + 1);
+    });
+  }
 
 }
