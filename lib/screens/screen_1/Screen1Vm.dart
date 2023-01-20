@@ -14,23 +14,23 @@ class Screen1VmOld {
 
   final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
       StreamController();
-        // ..add(const MyScaffoldValue("initial value"));
+
+  // ..add(const MyScaffoldValue("initial value"));
 
   Stream<MyScaffoldValue> get myScaffoldValueStream =>
       _myScaffoldValueStreamController.stream;
 
   Screen1VmOld(this._navigateTo);
 
-  void onPressed() {
-  }
+  void onPressed() {}
 }
 
 class Screen1Vm {
-
   final CountRepository _countRepo;
 
   Screen1Vm(this._countRepo);
 
+  Stream<int> get countStream => _countRepo.countSteam;
 
   void onPressed() {
     final count = _countRepo.getCount();
@@ -38,5 +38,4 @@ class Screen1Vm {
       _countRepo.saveCount(value + 1);
     });
   }
-
 }
