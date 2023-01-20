@@ -8,12 +8,12 @@ import 'package:simple_hello_world/widgets/MyScaffold.dart';
 import 'Screen1Vm.dart';
 
 class Screen1 extends StatelessWidget {
-  late final Screen1Vm _screenVm;
+  late final Screen1VmOld _screenVm;
 
   late BuildContext _buildContext;
 
   Screen1({super.key}) {
-    this._screenVm = Screen1Vm(this._navigateTo);
+    this._screenVm = Screen1VmOld(this._navigateTo);
   }
 
   @override
