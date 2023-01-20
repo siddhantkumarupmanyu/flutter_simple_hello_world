@@ -12,10 +12,15 @@ import "Screen1Vm_test.mocks.dart";
 
 void main() {
 
-  test("adds1OnPressed", () async {
-    final countRepo = MockCountRepository();
-    final vm = Screen1Vm(countRepo);
+  late CountRepository countRepo;
+  late Screen1Vm vm;
 
+  setUp(() {
+   countRepo = MockCountRepository();
+   vm = Screen1Vm(countRepo);
+  });
+
+  test("adds1OnPressed", () async {
     when(countRepo.getCount()).thenAnswer((_) => Future.value(11));
 
     vm.onPressed();
@@ -25,9 +30,6 @@ void main() {
   });
 
   test("exposesCountStream", () async {
-    final countRepo = MockCountRepository();
-    final vm = Screen1Vm(countRepo);
-
     final streamController = StreamController<int>();
     when(countRepo.countSteam).thenAnswer((_) => streamController.stream);
 
