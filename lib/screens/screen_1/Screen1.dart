@@ -13,23 +13,24 @@ class Screen1 extends StatelessWidget {
   late BuildContext _buildContext;
 
   Screen1({super.key}) {
-    this._screenVm = Screen1Vm();
+    // this._screenVm = Screen1Vm();
   }
 
   @override
   Widget build(BuildContext context) {
-    _buildContext = context;
-    return MultiProvider(
-      providers: [
-        StreamProvider<MyScaffoldValue>.value(
-          value: _screenVm.myScaffoldValueStream,
-          initialData: const MyScaffoldValue("100"),
-        ),
-        Provider<MyScaffoldOnPressed>.value(
-            value: MyScaffoldOnPressed(_screenVm.onPressed)),
-      ],
-      child: const MyScaffold(),
-    );
+    return Text("test");
+    // _buildContext = context;
+    // return MultiProvider(
+    //   providers: [
+    //     StreamProvider<MyScaffoldValue>.value(
+    //       value: _screenVm.myScaffoldValueStream,
+    //       initialData: const MyScaffoldValue("100"),
+    //     ),
+    //     Provider<MyScaffoldOnPressed>.value(
+    //         value: MyScaffoldOnPressed(_screenVm.onPressed)),
+    //   ],
+    //   child: const MyScaffold(),
+    // );
   }
 
   void _navigateTo() {
