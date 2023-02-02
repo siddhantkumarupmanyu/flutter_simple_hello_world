@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
 void main() {
-  testWidgets("watchesForValueChange", (widgetTester) async {
+  testWidgets("updatesBodyText", (widgetTester) async {
     final streamController = StreamController<MyScaffoldDto>();
 
     await widgetTester.pumpWidget(MaterialApp(
