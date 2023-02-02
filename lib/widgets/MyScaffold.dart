@@ -6,15 +6,15 @@ class MyScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var myScaffoldDto = context.watch<MyScaffoldDto>();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
-        child: Text(context.select<MyScaffoldDto, String>(
-            (myScaffoldDto) => myScaffoldDto.value)),
+        child: Text(myScaffoldDto.value),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: context.read<MyScaffoldDto>().callback,
+        onPressed: myScaffoldDto.callback,
         child: const Icon(Icons.add),
       ),
     );
@@ -26,17 +26,4 @@ class MyScaffoldDto {
   final void Function() callback;
 
   const MyScaffoldDto(this.value, this.callback);
-}
-
-// todo: delete
-class MyScaffoldValue {
-  final String value;
-
-  const MyScaffoldValue(this.value);
-}
-
-class MyScaffoldOnPressed {
-  final void Function() callback;
-
-  const MyScaffoldOnPressed(this.callback);
 }

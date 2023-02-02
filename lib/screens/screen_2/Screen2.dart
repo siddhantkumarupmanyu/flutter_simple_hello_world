@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
-
-
 class Screen2 extends StatelessWidget {
   final Screen2Vm _screenVm = Screen2Vm();
 
@@ -15,12 +13,10 @@ class Screen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        StreamProvider<MyScaffoldValue>.value(
+        StreamProvider<MyScaffoldDto>.value(
           value: _screenVm.myScaffoldValueStream,
-          initialData: const MyScaffoldValue("0"),
+          initialData: MyScaffoldDto("0", _screenVm.onPressed),
         ),
-        Provider<MyScaffoldOnPressed>.value(
-            value: MyScaffoldOnPressed(_screenVm.onPressed)),
       ],
       child: const MyScaffold(),
     );
@@ -28,10 +24,10 @@ class Screen2 extends StatelessWidget {
 }
 
 class Screen2Vm {
-  final StreamController<MyScaffoldValue> _myScaffoldValueStreamController =
-      StreamController()..add(MyScaffoldValue("initial value, screen 2"));
+  final StreamController<MyScaffoldDto> _myScaffoldValueStreamController =
+      StreamController();
 
-  Stream<MyScaffoldValue> get myScaffoldValueStream =>
+  Stream<MyScaffoldDto> get myScaffoldValueStream =>
       _myScaffoldValueStreamController.stream;
 
   int _count = 0;
@@ -41,6 +37,6 @@ class Screen2Vm {
   void onPressed() {
     _count++;
     _myScaffoldValueStreamController
-        .add(MyScaffoldValue("$_count from screen 2"));
+        .add(MyScaffoldDto("$_count from screen 2", this.onPressed));
   }
 }

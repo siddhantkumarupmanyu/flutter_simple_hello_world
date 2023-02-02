@@ -1,9 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_hello_world/widgets/MyScaffold.dart';
 
 import 'Screen1Vm.dart';
 
@@ -14,20 +10,21 @@ class Screen1 extends StatelessWidget {
     this._screenVm = screen1vm;
   }
 
+  // todo:
   @override
   Widget build(BuildContext context) {
     // _buildContext = context;
     return MultiProvider(
       providers: [
-        StreamProvider<MyScaffoldValue>.value(
-          value: _screenVm.countStream
-              .map((event) => MyScaffoldValue(event.toString())),
-          initialData: const MyScaffoldValue("-1"),
-        ),
-        Provider<MyScaffoldOnPressed>.value(
-            value: MyScaffoldOnPressed(_screenVm.onPressed)),
+        //   StreamProvider<MyScaffoldValue>.value(
+        //     value: _screenVm.countStream
+        //         .map((event) => MyScaffoldValue(event.toString())),
+        //     initialData: const MyScaffoldValue("-1"),
+        //   ),
+        //   Provider<MyScaffoldOnPressed>.value(
+        //       value: MyScaffoldOnPressed(_screenVm.onPressed)),
       ],
-      child: const MyScaffold(),
+      // child: const MyScaffold(),
     );
   }
 
