@@ -6,41 +6,37 @@ class MyScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo: do not watch here, it recreates the whole thing
-    // ie, all the widgets, that's what we don't want.
-
-    final myScaffoldValue = context.watch<MyScaffoldValue>();
-    final myScaffoldOnPressed =
-        Provider.of<MyScaffoldOnPressed>(context, listen: false);
+    final myScaffoldDto = context.watch<MyScaffoldDto>();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
-        child: Text(myScaffoldValue.value),
+        child: Text(myScaffoldDto.value),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: myScaffoldOnPressed.callback,
+        onPressed: myScaffoldDto.callback,
         child: const Icon(Icons.add),
       ),
     );
   }
 }
 
-class MyScaffoldValue{
+class MyScaffoldDto {
   final String value;
+  final void Function() callback;
+
+  const MyScaffoldDto(this.value, this.callback);
+}
+
+// todo: delete
+class MyScaffoldValue {
+  final String value;
+
   const MyScaffoldValue(this.value);
 }
 
-class MyScaffoldOnPressed{
+class MyScaffoldOnPressed {
   final void Function() callback;
+
   const MyScaffoldOnPressed(this.callback);
 }
-
-// these are immutable classes just wrapping the concrete type. DTOs.
-// this is done so provider can detect correct type.
-// cause typedef does not work
-
-// one can go and club these two and then,
-// have MyScaffoldValue take stream and all that stuff.
-// and listen particular stuff
-// but i want to keep it simple and provide a direct replacement for wrapped types.
