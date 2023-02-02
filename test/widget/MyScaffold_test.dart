@@ -26,19 +26,14 @@ void main() {
     expect(find.text("20"), findsOneWidget);
   });
 
-  testWidgets(skip: true, "callsOnPressed", (widgetTester) async {
+  testWidgets("callsOnPressed", (widgetTester) async {
     var isCalled = false;
 
     await widgetTester.pumpWidget(MaterialApp(
-        home: MultiProvider(
-      providers: [
-        Provider<MyScaffoldValue>.value(
-          value: const MyScaffoldValue("100"),
-        ),
-        Provider<MyScaffoldOnPressed>.value(value: MyScaffoldOnPressed(() {
-          isCalled = true;
-        })),
-      ],
+        home: Provider<MyScaffoldDto>.value(
+      value: MyScaffoldDto("100", () {
+        isCalled = true;
+      }),
       child: const MyScaffold(),
     )));
 
