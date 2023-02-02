@@ -6,15 +6,15 @@ class MyScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myScaffoldDto = context.watch<MyScaffoldDto>();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Hello Provider")),
       body: Center(
-        child: Text(myScaffoldDto.value),
+        child: Text(context.select<MyScaffoldDto, String>(
+            (myScaffoldDto) => myScaffoldDto.value)),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: myScaffoldDto.callback,
+        onPressed: context.read<MyScaffoldDto>().callback,
         child: const Icon(Icons.add),
       ),
     );
