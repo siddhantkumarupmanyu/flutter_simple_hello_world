@@ -11,7 +11,7 @@ void main() {
 
 GoRouter router() {
   return GoRouter(
-    initialLocation: "/screen1",
+    initialLocation: "/screen2",
     routes: [
       // todo:
       // GoRoute(path: "/screen1", builder: (context, state) => Screen1()),

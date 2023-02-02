@@ -66,5 +66,3 @@ void main() {
     expect(find.text("1002"), findsOneWidget);
   });
 }
-
-// todo: consider using fake here.

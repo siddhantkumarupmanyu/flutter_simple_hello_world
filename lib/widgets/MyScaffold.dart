@@ -6,6 +6,9 @@ class MyScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // todo: do not watch here, it recreates the whole thing
+    // ie, all the widgets, that's what we don't want.
+
     final myScaffoldValue = context.watch<MyScaffoldValue>();
     final myScaffoldOnPressed =
         Provider.of<MyScaffoldOnPressed>(context, listen: false);

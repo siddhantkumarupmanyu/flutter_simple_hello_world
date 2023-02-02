@@ -20,7 +20,8 @@ class Screen1 extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<MyScaffoldValue>.value(
-          value: _screenVm.countStream.map((event) => MyScaffoldValue(event.toString())),
+          value: _screenVm.countStream
+              .map((event) => MyScaffoldValue(event.toString())),
           initialData: const MyScaffoldValue("-1"),
         ),
         Provider<MyScaffoldOnPressed>.value(
