@@ -9,7 +9,7 @@ class MyScaffold extends StatelessWidget {
     var myScaffoldDto = context.watch<MyScaffoldDto>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Hello Provider")),
+      appBar: AppBar(title: Text(myScaffoldDto.appBarValue)),
       body: Center(
         child: Text(myScaffoldDto.value),
       ),
@@ -24,6 +24,7 @@ class MyScaffold extends StatelessWidget {
 class MyScaffoldDto {
   final String value;
   final void Function() callback;
+  final String appBarValue;
 
-  const MyScaffoldDto(this.value, this.callback);
+  const MyScaffoldDto(this.value, this.callback, this.appBarValue);
 }

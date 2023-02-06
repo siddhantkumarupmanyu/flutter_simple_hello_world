@@ -12,14 +12,14 @@ void main() {
     await widgetTester.pumpWidget(MaterialApp(
         home: StreamProvider<MyScaffoldDto>.value(
       value: streamController.stream,
-      initialData: MyScaffoldDto("100", () {}),
+      initialData: MyScaffoldDto("100", () {}, "App Bar"),
       child: const MyScaffold(),
     )));
 
-    expect(find.text("Hello Provider"), findsOneWidget);
+    expect(find.text("App Bar"), findsOneWidget);
     expect(find.text("100"), findsOneWidget);
 
-    streamController.add(MyScaffoldDto("20", () {}));
+    streamController.add(MyScaffoldDto("20", () {}, "App Bar"));
 
     await widgetTester.pumpAndSettle();
 
@@ -33,11 +33,11 @@ void main() {
         home: Provider<MyScaffoldDto>.value(
       value: MyScaffoldDto("100", () {
         isCalled = true;
-      }),
+      }, "App Bar"),
       child: const MyScaffold(),
     )));
 
-    expect(find.text("Hello Provider"), findsOneWidget);
+    expect(find.text("App Bar"), findsOneWidget);
     expect(find.text("100"), findsOneWidget);
 
     await widgetTester.tap(find.byType(FloatingActionButton));
@@ -45,5 +45,24 @@ void main() {
     await widgetTester.pumpAndSettle();
 
     expect(isCalled, equals(true));
+  });
+
+  testWidgets("updatesAppBarText", (widgetTester) async {
+    final streamController = StreamController<MyScaffoldDto>();
+
+    await widgetTester.pumpWidget(MaterialApp(
+        home: StreamProvider<MyScaffoldDto>.value(
+      value: streamController.stream,
+      initialData: MyScaffoldDto("100", () {}, "App Bar"),
+      child: const MyScaffold(),
+    )));
+
+    expect(find.text("App Bar"), findsOneWidget);
+
+    streamController.add(MyScaffoldDto("20", () {}, "Updated App Bar"));
+
+    await widgetTester.pumpAndSettle();
+
+    expect(find.text("Updated App Bar"), findsOneWidget);
   });
 }
