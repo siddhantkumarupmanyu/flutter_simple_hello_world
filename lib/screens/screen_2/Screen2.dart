@@ -15,7 +15,7 @@ class Screen2 extends StatelessWidget {
       providers: [
         StreamProvider<MyScaffoldDto>.value(
           value: _screenVm.myScaffoldValueStream,
-          initialData: MyScaffoldDto("0", _screenVm.onPressed),
+          initialData: MyScaffoldDto("0", _screenVm.onPressed, "Screen 2"),
         ),
       ],
       child: const MyScaffold(),
@@ -36,7 +36,7 @@ class Screen2Vm {
 
   void onPressed() {
     _count++;
-    _myScaffoldValueStreamController
-        .add(MyScaffoldDto("$_count from screen 2", this.onPressed));
+    _myScaffoldValueStreamController.add(
+        MyScaffoldDto("$_count from screen 2", this.onPressed, "Screen 2"));
   }
 }
