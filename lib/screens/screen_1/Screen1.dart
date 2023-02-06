@@ -13,9 +13,9 @@ class Screen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     // _buildContext = context;
     return StreamProvider.value(
-        value: _screenVm.countStream
-            .map((count) => MyScaffoldDto(count.toString(), () {}, "Screen 1")),
-        initialData: MyScaffoldDto("10", () {}, "Screen 1"),
+        value: _screenVm.countStream.map((count) =>
+            MyScaffoldDto(count.toString(), _screenVm.onPressed, "Screen 1")),
+        initialData: MyScaffoldDto("10", _screenVm.onPressed, "Screen 1"),
         child: const MyScaffold());
   }
 

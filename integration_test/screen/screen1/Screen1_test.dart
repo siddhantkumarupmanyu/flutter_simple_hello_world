@@ -22,31 +22,6 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  //
-  // testWidgets("incrementsCountOnTap", (WidgetTester tester) async {
-  //   var countRepo = MockCountRepository();
-  //   var screen1Vm = Screen1Vm(countRepo);
-  //   var screen = Screen1(screen1Vm);
-  //
-  //   var streamController = StreamController<int>();
-  //   streamController.add(0);
-  //
-  //   // i think fake is much better than a mock here,
-  //   // since i am mocking everything, but let's see.
-  //   when(countRepo.countSteam).thenAnswer((realInvocation) => streamController.stream);
-  //   when(countRepo.getCount()).thenAnswer((realInvocation) => Future.value(10));
-  //
-  //   runApp(MaterialApp(home: screen));
-  //   await tester.pumpAndSettle();
-  //
-  //   expect(find.text("Screen 1"), findsOneWidget);
-  //   expect(find.text("0"), findsOneWidget);
-  //
-  //   await tester.tap(find.byType(FloatingActionButton));
-  //
-  //   verify(countRepo.saveCount(11));
-  // });
-
   testWidgets("rebuildsWidgetsOnNewValue", (WidgetTester tester) async {
     await setUpScreen(tester);
 
@@ -57,6 +32,15 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text("1002"), findsOneWidget);
+  });
+
+  testWidgets("incrementsCountOnTap", (WidgetTester tester) async {
+    await setUpScreen(tester);
+
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    await expectLater(find.text("1"), findsOneWidget);
   });
 }
 
