@@ -53,14 +53,14 @@ void main() {
 
     vm.onPressed();
 
-    var pushedScreen = "";
-    vm.setNavigateTo((screen) {
-      pushedScreen = screen;
+    var pushedLocation = "";
+    vm.setNavigateTo((location) {
+      pushedLocation = location;
     });
 
     await Future.delayed(const Duration(milliseconds: 1));
     verify(countRepo.saveCount(11));
 
-    expect(pushedScreen, equals("/screen2"));
+    expect(pushedLocation, equals("/screen2"));
   });
 }
