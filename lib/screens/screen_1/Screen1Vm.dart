@@ -10,6 +10,7 @@ import 'package:simple_hello_world/CountRepository.dart';
 
 class Screen1Vm {
   final CountRepository _countRepo;
+  late Function(String screen) _navigateTo;
 
   Screen1Vm(this._countRepo);
 
@@ -19,6 +20,13 @@ class Screen1Vm {
     final count = _countRepo.getCount();
     count.then((value) {
       _countRepo.saveCount(value + 1);
+      if (value == 10) {
+        _navigateTo("/screen2");
+      }
     });
+  }
+
+  void setNavigateTo(void Function(String screen) navigateTo) {
+    this._navigateTo = navigateTo;
   }
 }

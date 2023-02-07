@@ -11,13 +11,12 @@ import 'package:simple_hello_world/screens/screen_1/Screen1Vm.dart';
 import "Screen1Vm_test.mocks.dart";
 
 void main() {
-
   late CountRepository countRepo;
   late Screen1Vm vm;
 
   setUp(() {
-   countRepo = MockCountRepository();
-   vm = Screen1Vm(countRepo);
+    countRepo = MockCountRepository();
+    vm = Screen1Vm(countRepo);
   });
 
   test("adds1OnPressed", () async {
@@ -40,6 +39,28 @@ void main() {
     expect(await streamQueue.next, equals(22));
   });
 
-  // navigate to another screen when counts goes above
+  /*
+    vm.navigateTo = () {
 
+    }
+    OR
+    vm.setNavigateTo((){
+
+    })
+    */
+  test("navigatesToScreen2WhenCountEquals10", () async {
+    when(countRepo.getCount()).thenAnswer((_) => Future.value(10));
+
+    vm.onPressed();
+
+    var pushedScreen = "";
+    vm.setNavigateTo((screen) {
+      pushedScreen = screen;
+    });
+
+    await Future.delayed(const Duration(milliseconds: 1));
+    verify(countRepo.saveCount(11));
+
+    expect(pushedScreen, equals("/screen2"));
+  });
 }
