@@ -64,7 +64,7 @@ void main() {
     final RouteMatchList matchList = lastMatch is ImperativeRouteMatch ? lastMatch.matches : goRouter.routerDelegate.currentConfiguration;
     final String location = matchList.uri.toString();
 
-    expect(location, equals("/screen2"));
+    expect(location, equals("/test-screen"));
   });
 }
 
