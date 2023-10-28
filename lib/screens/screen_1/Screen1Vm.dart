@@ -13,7 +13,7 @@ class Screen1Vm {
   void onPressed() {
     _countRepo.getAndUpdate((value) {
       var incremented = value + 1;
-      if (value == 10) {
+      if (value > 42) {
         _navigateTo("/screen2");
       }
       return incremented;
