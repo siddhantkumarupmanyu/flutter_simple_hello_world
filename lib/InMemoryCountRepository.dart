@@ -22,15 +22,24 @@ class InMemoryCountRepository implements CountRepository {
     return _count;
   }
 
+  // https://www.reddit.com/r/dartlang/s/NayG3dPRaB
+  var _savePendingTask = Future.value();
+
   @override
   Future<void> saveCount(int count) async {
+    var thisTask = _savePendingTask.then((_) => _changeCounter(count));
+    _savePendingTask = thisTask;
+    return _savePendingTask;
+  }
+
+  Future<void> _changeCounter(int count) async {
     await _waitForSomeTime();
     _count = count;
     _notifyStream();
   }
 
   void _notifyFirstListenerWhenAttachedToCountStream() {
-    _countStreamController.onListen = (){
+    _countStreamController.onListen = () {
       _countStreamController.add(_count);
     };
   }
