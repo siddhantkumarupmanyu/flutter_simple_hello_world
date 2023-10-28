@@ -12,9 +12,7 @@ class InMemoryCountRepository implements CountRepository {
 
   final int _operationDuration;
 
-  InMemoryCountRepository(this._operationDuration) {
-    _notifyFirstListenerWhenAttachedToCountStream();
-  }
+  InMemoryCountRepository(this._operationDuration);
 
   @override
   Future<int> getCount() async {
@@ -40,12 +38,6 @@ class InMemoryCountRepository implements CountRepository {
       await saveCount(updated);
     });
     _updatePendingTask = thisTask;
-  }
-
-  void _notifyFirstListenerWhenAttachedToCountStream() {
-    _countStreamController.onListen = () {
-      _countStreamController.add(_count);
-    };
   }
 
   Future<void> _waitForSomeTime() async {

@@ -17,9 +17,6 @@ void main() {
   });
 
   test("emitsCount", () async {
-    // emits when new listener is attached.
-    expect(await streamQueue.next, equals(0));
-
     await repo.saveCount(5);
     expect(await streamQueue.next, equals(5));
 
@@ -31,9 +28,6 @@ void main() {
   });
 
   test("getAndUpdate", () async {
-    // attach on first listener attached
-    expect(await streamQueue.next, equals(0));
-
     repo.getAndUpdate((value) => value + 1);
     repo.getAndUpdate((value) => value + 3);
 
@@ -42,8 +36,6 @@ void main() {
   });
 
   test("multipleListeners", () async {
-    expect(await streamQueue.next, equals(0));
-
     await repo.saveCount(5);
     expect(await streamQueue.next, equals(5));
 
