@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:simple_hello_world/CountRepository.dart';
 import 'package:simple_hello_world/screens/screen_1/Screen1.dart';
@@ -11,6 +12,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   late FakeCountRepo countRepo;
+  late GoRouter goRouter;
 
   Future<void> setUpScreen(WidgetTester tester) async {
     countRepo = FakeCountRepo();
@@ -18,7 +20,14 @@ void main() {
     var screen1Vm = Screen1Vm(countRepo);
     var screen = Screen1(screen1Vm);
 
-    runApp(MaterialApp(home: screen));
+    goRouter = GoRouter(initialLocation: "/test-screen", routes: [
+      GoRoute(path: "/test-screen", builder: (context, state) => screen)
+    ]);
+
+    runApp(MaterialApp.router(
+      title: "test app",
+      routerConfig: goRouter,
+    ));
     await tester.pumpAndSettle();
   }
 
@@ -41,6 +50,17 @@ void main() {
     await tester.pumpAndSettle();
 
     await expectLater(find.text("1"), findsOneWidget);
+  });
+
+  testWidgets("navigatesToScreen2After10Clicks", (tester) async {
+    await setUpScreen(tester);
+
+    for (var i = 0; i < 10; i++) {
+      await tester.tap(find.byType(FloatingActionButton));
+    }
+    await tester.pumpAndSettle();
+
+    expect(goRouter.location, equals("/screen2"));
   });
 }
 

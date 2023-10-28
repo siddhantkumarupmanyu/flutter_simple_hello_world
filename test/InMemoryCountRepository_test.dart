@@ -7,7 +7,7 @@ void main() {
   late StreamQueue<int> streamQueue;
 
   setUp(() {
-    repo = InMemoryCountRepository(20);
+    repo = InMemoryCountRepository(200);
     streamQueue = StreamQueue<int>(repo.countSteam);
   });
 
@@ -31,6 +31,35 @@ void main() {
     expect(await streamQueue.next, equals(20));
   });
 
-  // test("getAndUpdate", () async {
-  // });
+  test("getAndUpdate", () async {
+    // attach first listener
+    expect(await streamQueue.next, equals(0));
+
+    repo.getCount().then((count) {
+      repo.saveCount(count + 1);
+    });
+
+    repo.getCount().then((count) {
+      repo.saveCount(count + 1);
+    });
+
+    expect(await streamQueue.next, equals(1));
+    expect(await streamQueue.next, equals(2));
+  });
+
+  test("reproducibleConcurrentIssue", () async {
+    // attach first listener
+    expect(await streamQueue.next, equals(0));
+
+    repo.getCount().then((count) {
+      repo.saveCount(count + 1);
+    });
+
+    repo.getCount().then((count) {
+      repo.saveCount(count + 1);
+    });
+
+    expect(await streamQueue.next, equals(1));
+    expect(await streamQueue.next, equals(2));
+  });
 }

@@ -16,6 +16,20 @@ class Screen1Vm {
 
   Stream<int> get countStream => _countRepo.countSteam;
 
+  // todo:
+  // one issue is when saveCount is still in progress,
+  // we are getting old value from getCount,
+  // its such a threading issue,
+  // i am doing something wrong here??
+  // show i put write lock.
+  // while a write operation in going on wait for read as well as write.
+  // issue here is i don't want to overwrite i want to get old value
+  // and then update, in such cases we can have getAndUpdate()
+  // on in this case get not required.
+
+  // use getAndUpdate and under async fn launch _navigateTo
+  // so getAndUpdateExecution completes successfully and _navigateTo
+  // is put up as different event in event loop.
   void onPressed() {
     final count = _countRepo.getCount();
     count.then((value) {

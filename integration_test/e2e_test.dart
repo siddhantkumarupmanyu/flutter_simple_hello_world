@@ -13,6 +13,10 @@ void main() {
     expect(find.text("Screen 1"), findsOneWidget);
     expect(find.text("0"), findsOneWidget);
 
-    await tester.tap(find.byType(FloatingActionButton));
+    for (var i = 0; i < 10; i++) {
+      await tester.tap(find.byType(FloatingActionButton));
+    }
+
+    expect(find.text("Screen 2"), findsOneWidget);
   });
 }
