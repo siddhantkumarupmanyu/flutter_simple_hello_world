@@ -1,6 +1,6 @@
 import 'package:async/async.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:simple_hello_world/InMemoryCountRepository.dart';
+import 'package:flutter_spike_state_management/InMemoryCountRepository.dart';
 
 void main() {
   late InMemoryCountRepository repo;

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:simple_hello_world/CountRepository.dart';
-import 'package:simple_hello_world/screens/screen_1/Screen1.dart';
-import 'package:simple_hello_world/screens/screen_1/Screen1Vm.dart';
+import 'package:flutter_spike_state_management/CountRepository.dart';
+import 'package:flutter_spike_state_management/screens/screen_1/Screen1.dart';
+import 'package:flutter_spike_state_management/screens/screen_1/Screen1Vm.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

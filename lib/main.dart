@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_hello_world/CountRepository.dart';
-import 'package:simple_hello_world/InMemoryCountRepository.dart';
-import 'package:simple_hello_world/screens/screen_1/Screen1Vm.dart';
+import 'package:flutter_spike_state_management/CountRepository.dart';
+import 'package:flutter_spike_state_management/InMemoryCountRepository.dart';
+import 'package:flutter_spike_state_management/screens/screen_1/Screen1Vm.dart';
 
 import 'screens/screen_1/Screen1.dart';
 import 'screens/screen_2/Screen2.dart';

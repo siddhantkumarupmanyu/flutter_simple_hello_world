@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:simple_hello_world/CountRepository.dart';
+import 'package:flutter_spike_state_management/CountRepository.dart';
 
 class InMemoryCountRepository implements CountRepository {
   int _count = 0;

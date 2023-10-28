@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_hello_world/widgets/MyScaffold.dart';
+import 'package:flutter_spike_state_management/widgets/MyScaffold.dart';
 
 import 'Screen1Vm.dart';
 

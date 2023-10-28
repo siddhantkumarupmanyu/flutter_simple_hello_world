@@ -1,4 +1,4 @@
-name: simple_hello_world
+name: flutter_spike_state_management
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

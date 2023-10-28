@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:simple_hello_world/CountRepository.dart';
+import 'package:flutter_spike_state_management/CountRepository.dart';
 
 // Vm stands for view model
 // one can also call it a service class, or presentation in mvp

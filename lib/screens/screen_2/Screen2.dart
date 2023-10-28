@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_hello_world/widgets/MyScaffold.dart';
+import 'package:flutter_spike_state_management/widgets/MyScaffold.dart';
 
 class Screen2 extends StatelessWidget {
   final Screen2Vm _screenVm = Screen2Vm();

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_hello_world/widgets/MyScaffold.dart';
+import 'package:flutter_spike_state_management/widgets/MyScaffold.dart';
 
 class TestScaffoldDto implements MyScaffoldDto {
   TestScaffoldDto(this.appBarValue, this.callback, this.value);
