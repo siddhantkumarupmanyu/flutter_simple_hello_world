@@ -17,13 +17,12 @@ void main() {
   });
 
   test("emitsCount", () async {
-    // i need to await so that saveCount finishes the operation without putting anything in the steam,
-    // so streams onListen logic can be verified
+    // emits when new listener is attached.
+    expect(await streamQueue.next, equals(0));
+
     await repo.saveCount(5);
-    // gives the latest value when first listener is attached
     expect(await streamQueue.next, equals(5));
 
-    // not awaiting for it to save
     repo.saveCount(10);
     expect(await streamQueue.next, equals(10));
 
@@ -32,7 +31,7 @@ void main() {
   });
 
   test("getAndUpdate", () async {
-    // attach first listener
+    // attach on first listener attached
     expect(await streamQueue.next, equals(0));
 
     repo.getAndUpdate((value) => value + 1);
@@ -42,4 +41,17 @@ void main() {
     expect(await streamQueue.next, equals(4));
   });
 
+  test("multipleListeners", () async {
+    expect(await streamQueue.next, equals(0));
+
+    await repo.saveCount(5);
+    expect(await streamQueue.next, equals(5));
+
+    final streamQueue2 = StreamQueue<int>(repo.countSteam);
+
+    await repo.saveCount(10);
+
+    expect(await streamQueue2.next, equals(10));
+    expect(await streamQueue.next, equals(10));
+  });
 }

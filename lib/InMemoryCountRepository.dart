@@ -5,7 +5,7 @@ import 'package:flutter_spike_state_management/CountRepository.dart';
 class InMemoryCountRepository implements CountRepository {
   int _count = 0;
 
-  final StreamController<int> _countStreamController = StreamController();
+  final StreamController<int> _countStreamController = StreamController.broadcast();
 
   @override
   Stream<int> get countSteam => _countStreamController.stream;
