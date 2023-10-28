@@ -35,16 +35,11 @@ void main() {
     // attach first listener
     expect(await streamQueue.next, equals(0));
 
-    repo.getCount().then((count) {
-      repo.saveCount(count + 1);
-    });
-
-    repo.getCount().then((count) {
-      repo.saveCount(count + 1);
-    });
+    repo.getAndUpdate((value) => value + 1);
+    repo.getAndUpdate((value) => value + 3);
 
     expect(await streamQueue.next, equals(1));
-    expect(await streamQueue.next, equals(2));
+    expect(await streamQueue.next, equals(4));
   });
 
 }
