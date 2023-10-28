@@ -19,7 +19,7 @@ class Screen1 extends StatelessWidget {
     return StreamProvider.value(
         value: _screenVm.countStream.map((count) => Screen1ScaffoldDto(
             count.toString(), _screenVm.onPressed, "Screen 1")),
-        initialData: Screen1ScaffoldDto("10", _screenVm.onPressed, "Screen 1"),
+        initialData: Screen1ScaffoldDto("36", _screenVm.onPressed, "Screen 1"),
         child: const MyScaffold<Screen1ScaffoldDto>());
   }
 }

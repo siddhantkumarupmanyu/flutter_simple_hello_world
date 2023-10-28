@@ -13,7 +13,7 @@ class Screen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        StreamProvider<MyScaffoldDto>.value(
+        StreamProvider.value(
           value: _screenVm.myScaffoldValueStream,
           initialData: Screen2ScaffoldDto("0", _screenVm.onPressed, "Screen 2"),
         ),
