@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_spike_state_management/CountRepository.dart';
 import 'package:flutter_spike_state_management/InMemoryCountRepository.dart';
 import 'package:flutter_spike_state_management/screens/screen_1/Screen1Vm.dart';
+import 'package:go_router/go_router.dart';
 
 import 'screens/screen_1/Screen1.dart';
 import 'screens/screen_2/Screen2.dart';
@@ -23,7 +23,7 @@ GoRouter router() {
             var vm = Screen1Vm(countRepo);
             return Screen1(vm);
           }),
-      GoRoute(path: "/screen2", builder: (context, state) => Screen2())
+      GoRoute(path: "/screen2", builder: (context, state) => Screen2(countRepo))
     ],
   );
 }

@@ -1,43 +1,31 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_spike_state_management/CountRepository.dart';
 import 'package:flutter_spike_state_management/widgets/MyScaffold.dart';
 import 'package:provider/provider.dart';
 
 class Screen2 extends StatelessWidget {
-  final Screen2Vm _screenVm = Screen2Vm();
+  final CountRepository _repo;
 
-  Screen2({super.key});
+  const Screen2(this._repo, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         StreamProvider.value(
-          value: _screenVm.myScaffoldValueStream,
-          initialData: Screen2ScaffoldDto("0", _screenVm.onPressed, "Screen 2"),
+          value: _repo.countSteam.map((count) {
+            print("got value s2 $count");
+            return Screen2ScaffoldDto(count.toString(), _onClick, "Screen 2");
+          }),
+          initialData: Screen2ScaffoldDto("0", _onClick, "Screen 2"),
         ),
       ],
       child: const MyScaffold<Screen2ScaffoldDto>(),
     );
   }
-}
 
-class Screen2Vm {
-  final StreamController<Screen2ScaffoldDto> _myScaffoldValueStreamController =
-      StreamController();
-
-  Stream<Screen2ScaffoldDto> get myScaffoldValueStream =>
-      _myScaffoldValueStreamController.stream;
-
-  int _count = 0;
-
-  Screen2Vm();
-
-  void onPressed() {
-    _count++;
-    _myScaffoldValueStreamController.add(Screen2ScaffoldDto(
-        "$_count from screen 2", onPressed, "Screen 2"));
+  void _onClick() {
+    _repo.getAndUpdate((value) => value + 2);
   }
 }
 
