@@ -1,19 +1,27 @@
-# simple_hello_world
+# flutter spike - state management
 
-trying to find out how to flutter... :)
+## gist
 
-## Getting Started
+- divided into screens
+- multiple type/level of widgets
+  - small
+  - medium
+    - composed of small widgets
+  - screen
+    - composed of medium and small widgets
+- smaller widget tree
+- no direct ref. to domain from view/widgets
+  - views/widgets do not know about domain objects.
+  - screen/vm knows and does the translation.
+- no datastore or anything which views ref. directly.
+  - views get their data from above object which composes them.
+    - small
+      - screen
+      - medium
+    - medium
+      - screen
 
-add docs,   
-what how, why?
-
-## points
-
-- vm should be created outside and just be passed on to the screen
-- vm should not know about MyScaffoldValue, concrete things/widgets in/on the screen.  
-  &nbsp;&nbsp;&nbsp;&nbsp;screen should transform if required for particular widgets
-
-## idea
+## concept
 
 idea is simple vm is passed on to the screen.
 vm doesn't know what's on the screen. and its fully decoupled.
