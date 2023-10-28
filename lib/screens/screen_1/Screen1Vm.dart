@@ -41,6 +41,6 @@ class Screen1Vm {
   }
 
   void setNavigateTo(void Function(String location) navigateTo) {
-    this._navigateTo = navigateTo;
+    _navigateTo = navigateTo;
   }
 }

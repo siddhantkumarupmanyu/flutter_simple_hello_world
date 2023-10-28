@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
-import 'package:integration_test/integration_test.dart';
 import 'package:flutter_spike_state_management/CountRepository.dart';
 import 'package:flutter_spike_state_management/screens/screen_1/Screen1.dart';
 import 'package:flutter_spike_state_management/screens/screen_1/Screen1Vm.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
+import 'package:integration_test/integration_test.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -60,7 +60,11 @@ void main() {
     }
     await tester.pumpAndSettle();
 
-    expect(goRouter.location, equals("/screen2"));
+    final RouteMatch lastMatch = goRouter.routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch ? lastMatch.matches : goRouter.routerDelegate.currentConfiguration;
+    final String location = matchList.uri.toString();
+
+    expect(location, equals("/screen2"));
   });
 }
 
@@ -80,5 +84,10 @@ class FakeCountRepo extends CountRepository {
   Future<void> saveCount(int count) async {
     this.count = count;
     streamController.add(count);
+  }
+
+  @override
+  void getAndUpdate(int Function(int value) update) {
+    // TODO: implement getAndUpdate
   }
 }

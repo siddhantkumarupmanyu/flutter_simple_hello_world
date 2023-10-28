@@ -37,7 +37,7 @@ class Screen2Vm {
   void onPressed() {
     _count++;
     _myScaffoldValueStreamController.add(Screen2ScaffoldDto(
-        "$_count from screen 2", this.onPressed, "Screen 2"));
+        "$_count from screen 2", onPressed, "Screen 2"));
   }
 }
 
