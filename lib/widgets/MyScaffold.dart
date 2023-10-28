@@ -21,11 +21,18 @@ class MyScaffold<T extends MyScaffoldDto> extends StatelessWidget {
   }
 }
 
-// todo: upgrade
-// This requires the 'class-modifiers' language feature to be enabled.
-// Try updating your pubspec.yaml to set the minimum SDK constraint to 3.0.0 or higher, and running 'pub get
-abstract class MyScaffoldDto {
+@immutable
+abstract interface class MyScaffoldDto {
   abstract final String value;
   abstract final void Function() callback;
   abstract final String appBarValue;
 }
+
+// multiple optimizations can be done.
+// like why passing callback everytime.
+// create value type and only watch that.
+// watch separately and what not
+// all those optimization can be done.
+// what this eg. shows is with generics same widget should be able to listen/watch
+// for different data changes.
+// since provider works with types have to be done/this can be done like this.
