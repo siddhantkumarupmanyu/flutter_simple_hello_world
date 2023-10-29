@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_spike_state_management/CountRepository.dart';
 
 class InMemoryCountRepository implements CountRepository {
-  int _count = 0;
+  int _count = 1;
 
   final StreamController<int> _countStreamController = StreamController.broadcast();
 

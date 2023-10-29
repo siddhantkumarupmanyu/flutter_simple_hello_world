@@ -31,8 +31,8 @@ void main() {
     repo.getAndUpdate((value) => value + 1);
     repo.getAndUpdate((value) => value + 3);
 
-    expect(await streamQueue.next, equals(1));
-    expect(await streamQueue.next, equals(4));
+    expect(await streamQueue.next, equals(2));
+    expect(await streamQueue.next, equals(5));
   });
 
   test("multipleListeners", () async {
