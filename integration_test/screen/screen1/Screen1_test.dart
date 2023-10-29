@@ -52,11 +52,10 @@ void main() {
     await expectLater(find.text("2"), findsOneWidget);
   });
 
-  testWidgets("navigatesToScreen2After10Clicks", (tester) async {
-    fail("wrong");
+  testWidgets("navigatesToScreen2After15Clicks", (tester) async {
     await setUpScreen(tester);
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 15; i++) {
       await tester.tap(find.byType(FloatingActionButton));
     }
     await tester.pumpAndSettle();
@@ -68,8 +67,8 @@ void main() {
         : goRouter.routerDelegate.currentConfiguration;
     final String location = matchList.uri.toString();
 
-    expect(location, equals("/test-screen"));
-  }, skip: true);
+    expect(location, equals("/screen2"));
+  });
 }
 
 class FakeCountRepo extends CountRepository {
