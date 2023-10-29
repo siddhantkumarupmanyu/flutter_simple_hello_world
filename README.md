@@ -111,3 +111,23 @@ idea is to follow evolutionary architecture.
 this means passing the state to every intermediate widget. also idk how repainting works. invalidating every intermediate object. unnecessary diff computation.
 why try to reinvent, solve what provider already did.
 only refreshing the required widget. with no intermediate clutter. 
+
+
+## completed
+
+completed; issue with windows test runner, cannot run multiple integration tests.
+
+anyways, that was a long way. this was in such a bad shape. learned things, again. still so much.
+but with this, state idea i got. ui i need to see. ui is never ending. but now i have an idea how to approach and can always look back here for insights. quick look for further lookup. starting idea. and 'this exists'.
+still this has multiple issues. like that delay of 8secs. idk, i have no idea how to solve that rn. fine for now tbh.
+we will see.
+
+i liked working with windows.
+and how just easily it is to add support for android or windows to existing project. flutter create --platforms=android .
+
+but in any case i liked this spike. learned quite good. was doing stuff badly last time. wow.
+still so much to learn.
+
+flutter/flutter#101031
+flutter/samples#1000
+jtdLab/rapid#114
