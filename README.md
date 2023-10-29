@@ -104,3 +104,10 @@ anyways let this project contain. this is you can say spikes to extreme...
 
 went to extremes, did that and now have better idea, architecture.
 idea is to follow evolutionary architecture.
+
+
+## why not lifting the state 
+
+this means passing the state to every intermediate widget. also idk how repainting works. invalidating every intermediate object. unnecessary diff computation.
+why try to reinvent, solve what provider already did.
+only refreshing the required widget. with no intermediate clutter. 
