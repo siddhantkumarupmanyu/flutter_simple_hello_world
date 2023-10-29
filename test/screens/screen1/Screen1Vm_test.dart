@@ -19,14 +19,6 @@ void main() {
     vm = Screen1Vm(countRepo);
   });
 
-  test("incrementsValueBy1", () async {
-    vm.onPressed();
-
-    int Function(int) lambda =
-        verify(countRepo.getAndUpdate(captureAny)).captured[0];
-    expect(lambda(4), equals(5));
-  });
-
   test("exposesCountStream", () async {
     final streamController = StreamController<int>();
     when(countRepo.countSteam).thenAnswer((_) => streamController.stream);
@@ -38,6 +30,14 @@ void main() {
     expect(await streamQueue.next, equals(22));
   });
 
+  test("incrementsValueBy1", () async {
+    vm.onPressed();
+
+    int Function(int) lambda =
+        verify(countRepo.getAndUpdate(captureAny)).captured[0];
+    expect(lambda(4), equals(5));
+  });
+
   /*
     vm.navigateTo = () {
 
@@ -47,19 +47,19 @@ void main() {
 
     })
     */
-  test("navigatesToScreen2WhenCountEquals10", () async {
-    when(countRepo.getCount()).thenAnswer((_) => Future.value(10));
+  test("navigatesToScreen2OnModulus15", () async {
+    var location = "";
+    vm.setNavigateTo((l) {
+      location = l;
+    });
 
     vm.onPressed();
 
-    var pushedLocation = "";
-    vm.setNavigateTo((location) {
-      pushedLocation = location;
-    });
-
-    await Future.delayed(const Duration(milliseconds: 1));
-    verify(countRepo.getAndUpdate(captureAny));
-
-    expect(pushedLocation, equals("/screen2"));
-  }, skip: true);
+    int Function(int) lambda =
+        verify(countRepo.getAndUpdate(captureAny)).captured[0];
+    lambda(10);
+    expect(location, equals(""));
+    lambda(15);
+    expect(location, equals("/screen2"));
+  });
 }
