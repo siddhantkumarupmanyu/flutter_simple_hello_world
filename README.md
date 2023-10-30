@@ -131,3 +131,25 @@ still so much to learn.
 flutter/flutter#101031
 flutter/samples#1000
 jtdLab/rapid#114
+
+
+
+# notes
+
+cons manual state uplifting
+- intermediate widget becomes cluttered
+  - passing state/callback to low level objects
+  - multiple low level widgets
+- top level widget have to be stateful
+
+
+Responding to widget lifecycle events
+- some context specific request which should be canceled
+  - on cancel request
+  - on dismiss
+  - on back
+  - on navigating back
+- need to run the request under some context/scope
+- with state can use dispose?
+
+
