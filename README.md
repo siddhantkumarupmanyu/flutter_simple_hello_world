@@ -110,7 +110,9 @@ idea is to follow evolutionary architecture.
 
 this means passing the state to every intermediate widget. also idk how repainting works. invalidating every intermediate object. unnecessary diff computation.
 why try to reinvent, solve what provider already did.
-only refreshing the required widget. with no intermediate clutter. 
+only refreshing the required widget. with no intermediate clutter??
+
+https://docs.flutter.dev/data-and-backend/state-mgmt/simple#:~:text=This%20works%20okay%2C%20but%20for%20an%20app%20state%20that%20you%20need%20to%20modify%20from%20many%20different%20places%2C%20you%E2%80%99d%20have%20to%20pass%20around%20a%20lot%20of%20callbacks%E2%80%94which%20gets%20old%20pretty%20quickly.
 
 
 ## completed
